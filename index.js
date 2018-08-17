@@ -5,7 +5,7 @@ app.use(cors())
 var http = require('http').Server(app);
 var allowedOrigins = "http://localhost:*";
 var io = require('socket.io')(http,
-    { origins: 'https://*.herokuapp.com:*' });
+    { origins: "https://chatwebclient.herokuapp.com:*" });
 
 
 
