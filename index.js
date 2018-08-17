@@ -2,9 +2,8 @@ var app=require('express')();
 var http = require('http').Server(app);
 var allowedOrigins = "http://localhost:*";
 var io = require('socket.io')(http,
-    { origins: '*',
-      transports:['websocket']
-
+    { origins: '*'
+   
     });
 const cors=require('cors');
 
