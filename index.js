@@ -5,7 +5,7 @@ app.use(cors())
 var http = require('http').Server(app);
 var allowedOrigins = "http://localhost:*";
 var io = require('socket.io')(http,
-    { origins: 'http://localhost:4200' });
+    { origins: 'https://*.herokuapps.com' });
 
 
 
