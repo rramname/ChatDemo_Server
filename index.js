@@ -16,7 +16,10 @@ app.get("/",function(req,resp){
 http.listen(port, function(){
   console.log('listening on *:3000');
 });
-
+io.configure(function () {  
+  io.set("transports", ["websocket", "xhr-polling"]); 
+  io.set("polling duration", 10); 
+});
 io.on("connection", (socket)=>{
     console.log("user connected")
 
