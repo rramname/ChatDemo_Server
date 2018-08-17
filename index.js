@@ -1,7 +1,10 @@
 var app=require('express')();
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var allowedOrigins = "http://localhost:*";
+var io = require('socket.io')(http,{ origins: allowedOrigins});
 const cors=require('cors');
+
+
 
 const port=process.env.PORT || 3000
 
