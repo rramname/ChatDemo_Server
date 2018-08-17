@@ -1,17 +1,17 @@
 var app=require('express')();
+const cors=require('cors');
+
+app.use(cors())
 var http = require('http').Server(app);
 var allowedOrigins = "http://localhost:*";
 var io = require('socket.io')(http,
-    { origins: '*'
-   
-    });
-const cors=require('cors');
+    { origins: 'http://localhost:4200' });
 
 
 
 const port=process.env.PORT || 3000
 
-app.use(cors())
+
 app.get("/",function(req,resp){
   resp.send('<h1>Chat app online...</h1>');
 })
