@@ -1,8 +1,11 @@
 var app=require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+const cors=require('cors');
 
 const port=process.env.PORT || 3000
+
+app.use(cors())
 app.get("/",function(req,resp){
   resp.send('<h1>Chat app online...</h1>');
 })
