@@ -7,7 +7,7 @@ var allowedOrigins = "http://localhost:*";
 var io = require('socket.io')(http,
     { origins: "*:*" });
 
-
+    var users=[];
 
 const port=process.env.PORT || 3000
 
@@ -21,12 +21,27 @@ http.listen(port, function(){
 });
 
 io.on("connection", (socket)=>{
+    
     console.log("user connected")
+    
+    socket.on("new-connection",(user)=>{
+      
+      users.push(user)
+      io.emit("new-connection-success",users)
+    })
+    
+    //io.broadcast.emit("new-connection-success",users)
 
     socket.on("new-message",(msg)=>{
-      console.log(msg);
       io.emit("new-message",msg);
       
     })
+
+    socket.on('disconnect', function (user) {
+      console.log("User disconnected.")
+      let userIndx=users.indexOf(user);
+      users.splice(userIndx-1,1);
+      io.emit('user-disconnected',users);
+    });
 })
 
